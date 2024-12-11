@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: apigatewayService
+  cloud:
+    gateway:
+      routes:
+        - id: firstNameService
+          uri: lb://firstNameService
+          predicates:
+            - Path=/firstNameService/**
+        - id: lastnameService
+          uri: lb://lastnameService
+          predicates:
+            - Path=/lastnameService/**
+        - id: fathernameService
+          uri: lb://fathernameService
+          predicates:
+            - Path=/fathernameService/**
+
+    discovery:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8080
